@@ -11,20 +11,8 @@
     "prepare": "husky"
   },
   "dependencies": {
-    "@emotion/react": "^11.11.4",
-    "@emotion/styled": "^11.11.0",
-    "@fontsource/roboto": "^5.0.8",
-    "@mui/icons-material": ">=5.11",
-    "@mui/material": "^5.15.11",
-    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
-    "@mui/system": "^5.8.0",
-    "@mui/x-date-pickers": ">=6.15.0",
-    "material-react-table": "^2.12.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
-  },
-  "resolutions": {
-    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
   },
   "devDependencies": {
     "@types/react": "^18.2.56",

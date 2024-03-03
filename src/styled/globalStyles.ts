@@ -10,7 +10,10 @@ const GlobalStyle = createGlobalStyle`
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: ${({ theme }) => theme.color};
+    background-color: ${({ theme }) => theme.colors.base};
+
+    font-family: 'Roboto', sans-serif;
+    color: ${({ theme }) => theme.text};
   }
 `
 

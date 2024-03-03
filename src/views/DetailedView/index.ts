@@ -1,3 +1,3 @@
 import DetailedView from './DetailedView'
 
-export default { DetailedView }
+export default DetailedView
