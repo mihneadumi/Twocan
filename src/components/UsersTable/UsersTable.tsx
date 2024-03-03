@@ -13,7 +13,7 @@ const UsersTable = ({ entitites }: UsersTableProps) => {
   const navigate = useNavigate()
 
   const handleUserClick = (id: number) => () => {
-    navigate(`/${id}`)
+    navigate(`/users/${id}`)
   }
 
   return (

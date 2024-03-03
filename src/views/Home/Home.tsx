@@ -1,7 +1,7 @@
-import StyledHome from './styled/StyledHome'
 import UsersTable from '../../components/UsersTable/UsersTable'
 import user_data from '../../constants/mock_data'
 import Header from './components/Header/Header'
+import StyledPage from '../../styled/StyledPage'
 
 const Home = () => {
   const simplified_data = user_data.map((user) => {
@@ -13,10 +13,10 @@ const Home = () => {
   })
 
   return (
-    <StyledHome>
+    <StyledPage>
       <Header title='Users' />
       <UsersTable entitites={simplified_data} />
-    </StyledHome>
+    </StyledPage>
   )
 }
 

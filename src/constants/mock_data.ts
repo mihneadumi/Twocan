@@ -48,6 +48,14 @@ const user_data: User[] = [
     address: '32188 Larkin Turnpike',
     city: 'Omaha',
     state: 'Nebraska'
+  },
+  {
+    id: 7,
+    firstName: 'Porter',
+    lastName: 'Harris',
+    address: '32188 Larkin Turnpike',
+    city: 'Omaha',
+    state: 'Nebraska'
   }
 ]
 

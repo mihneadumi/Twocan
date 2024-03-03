@@ -31,8 +31,7 @@ const StyledDetailedView = styled.div`
     transition: 0.3s;
   }
   a:hover {
-    // inset animation
-    box-shadow: inset 0 50px 100px 0 ${({ theme }) => theme.colors.accent1};
+    box-shadow: inset 0 0 100px 0 ${({ theme }) => theme.colors.accent1};
     color: ${({ theme }) => theme.colors.hovered};
   }
 `

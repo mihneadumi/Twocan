@@ -15,6 +15,17 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto', sans-serif;
     color: ${({ theme }) => theme.text};
   }
+
+  a {
+    width: 100%;
+    text-align: center;
+    text-decoration: none;
+    color: ${({ theme }) => theme.colors.text};
+  }
+
+  a:hover {
+    color: ${({ theme }) => theme.colors.hovered};
+  }
 `
 
 export default GlobalStyle
