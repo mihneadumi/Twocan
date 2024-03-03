@@ -4,7 +4,7 @@ module.exports = {
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:react-hooks/recommended',
+    'plugin:react-hooks/recommended'
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'node_modules', '.prettierrc.json'],
   parser: '@typescript-eslint/parser',
@@ -12,9 +12,10 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': [
       'warn',
-      { allowConstantExport: true },
+      { allowConstantExport: true }
     ],
     'prefer-const': 'error',
     'import/prefer-default-export': 'error',
-  },
+    '@typescript-eslint/no-unused-vars': 'warn'
+  }
 }

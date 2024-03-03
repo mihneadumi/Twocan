@@ -1,10 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom'
-import Home from '../views/Home/Home'
+import { DetailedView } from '../views/DetailedView'
+import Home from '../views/Home'
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Home />
+  },
+  {
+    path: '/:id',
+    element: <DetailedView />
   }
 ])
 
