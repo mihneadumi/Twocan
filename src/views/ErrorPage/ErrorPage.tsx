@@ -1,5 +1,4 @@
 import { Link } from 'react-router-dom'
-import StyledPage from '../../styled/StyledPage'
 import StyledErrorPage from './styled/StyledErrorPage'
 
 const ErrorPage = () => {
