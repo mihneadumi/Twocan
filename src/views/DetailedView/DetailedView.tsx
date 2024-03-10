@@ -8,13 +8,12 @@ const DetailedView = () => {
 
   const id = useParams().id
   const user = user_data.find((user) => user.id.toString() === id)
-  console.log(user)
 
   useEffect(() => {
     if (!user) {
       navigate('/error')
     }
-  }, [user, navigate])
+  }, [navigate, user])
   return (
     user && (
       <StyledDetailedView>

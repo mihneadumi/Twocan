@@ -1,7 +1,7 @@
 // takes in a list of entities and renders a table with the entity data
 // use template
 import { useNavigate } from 'react-router-dom'
-import User from '../../types/User'
+import User from '../../interfaces/User'
 import capitalize from '../../utils/capitalize'
 import StyledTable from './styled/StyledTable'
 
