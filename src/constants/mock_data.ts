@@ -1,62 +1,93 @@
+import Post from '../interfaces/Post'
 import User from '../interfaces/User'
 
-const user_data: User[] = [
+export const users: User[] = [
+  {
+    id: 0,
+    username: 'aliciaH',
+    displayName: 'Alicia H',
+    posts: 2,
+    followers: 0,
+    following: 0,
+    bio: 'I am a developer'
+  },
   {
     id: 1,
-    firstName: 'John',
-    lastName: 'Doe',
-    address: '261 Erdman Ford',
-    city: 'East Daphne',
-    state: 'Kentucky'
+    username: 'billyBal',
+    displayName: 'Billy Balosu',
+    posts: 1,
+    followers: 0,
+    following: 0,
+    bio: 'I am definitely not a bot'
   },
   {
     id: 2,
-    firstName: 'Jane',
-    lastName: 'Doe',
-    address: '769 Dominic Grove',
-    city: 'Columbus',
-    state: 'Ohio'
+    username: 'SunshineLove123',
+    displayName: 'Samira',
+    posts: 1,
+    followers: 0,
+    following: 0,
+    bio: 'It is always sunny in my world'
   },
   {
     id: 3,
-    firstName: 'Joe',
-    lastName: 'Doe',
-    address: '566 Brakus Inlet',
-    city: 'South Linda',
-    state: 'West Virginia'
-  },
-  {
-    id: 4,
-    firstName: 'Kevin',
-    lastName: 'Vandy',
-    address: '722 Emie Stream',
-    city: 'Lincoln',
-    state: 'Nebraska'
-  },
-  {
-    id: 5,
-    firstName: 'Joshua',
-    lastName: 'Rolluffs',
-    address: '32188 Larkin Turnpike',
-    city: 'Omaha',
-    state: 'Nebraska'
-  },
-  {
-    id: 6,
-    firstName: 'Katie',
-    lastName: 'Rolluffs',
-    address: '32188 Larkin Turnpike',
-    city: 'Omaha',
-    state: 'Nebraska'
-  },
-  {
-    id: 7,
-    firstName: 'Porter',
-    lastName: 'Harris',
-    address: '32188 Larkin Turnpike',
-    city: 'Omaha',
-    state: 'Nebraska'
+    username: 'ye',
+    displayName: 'Kanye East',
+    posts: 1,
+    followers: 0,
+    following: 0,
+    bio: 'I am the Greatest artist of all T I M E'
   }
 ]
 
-export default user_data
+export const posts: Post[] = [
+  {
+    id: 0,
+    authorId: 0,
+    title: 'My first post',
+    content: 'This is my first post on this platform',
+    score: 0,
+    date: '2023-12-27'
+  },
+  {
+    id: 1,
+    authorId: 1,
+    title: 'Looking for ballers',
+    content:
+      'I am looking for people to play basketball with. Preferably black, 6\'5" and above and no criminal record',
+    score: 0,
+    date: '2024-02-14'
+  },
+  {
+    id: 2,
+    authorId: 2,
+    title: 'Why is the sky blue?',
+    score: 0,
+    date: '2024-02-14'
+  },
+  {
+    id: 3,
+    authorId: 3,
+    title: 'Hear me out guys',
+    content:
+      'Every human being has something of value that they brought to the table, especially Hitler',
+    score: 0,
+    date: '2024-03-09'
+  },
+  {
+    id: 4,
+    authorId: 1,
+    title: 'Kanye shut yo bitch ass up and drop Vultures 2 man fr',
+    score: 12,
+    date: '2024-03-10'
+  },
+  {
+    id: 5,
+    authorId: 0,
+    title: 'I am looking for a job',
+    content:
+      'I can sing, dance, cook meth, code, cut hair, and do a lot of other things, Please hmu if you have a job for me',
+    score: 0,
+    date: '2024-03-14'
+  }
+]

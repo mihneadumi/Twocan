@@ -5,10 +5,12 @@ const StyledHeader = styled.div`
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  font-weight: 600;
 
-  h1 {
-    font-size: 2rem;
+  p {
+    margin: 10px 0;
+    font-size: 1.5rem;
     color: ${({ theme }) => theme.colors.text};
   }
 `

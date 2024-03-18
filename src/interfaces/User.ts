@@ -1,10 +1,11 @@
 interface User {
   id: number
-  firstName: string
-  lastName: string
-  address?: string
-  city?: string
-  state?: string
+  username: string
+  displayName: string
+  posts: number
+  followers: number
+  following: number
+  bio: string
 }
 
 export default User

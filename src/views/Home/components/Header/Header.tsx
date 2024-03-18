@@ -1,13 +1,13 @@
 import StyledHeader from './styled/StyledHeader'
 
 interface HeaderProps {
-  title: string
+  title?: string
 }
 
 const Header = ({ title }: HeaderProps) => {
   return (
     <StyledHeader>
-      <h1>{title}</h1>
+      <p>{title ? title : 'Posts for you'}</p>
     </StyledHeader>
   )
 }

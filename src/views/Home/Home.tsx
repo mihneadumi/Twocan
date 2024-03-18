@@ -1,22 +1,17 @@
-import UsersTable from '../../components/UsersTable/UsersTable'
-import user_data from '../../constants/mock_data'
 import Header from './components/Header/Header'
-import StyledPage from '../../styled/StyledPage'
+import Scroller from './components/Scroller/Scroller'
+import SideBar from './components/SideBar/SideBar'
+import StyledHome from './styled/StyledHome'
 
 const Home = () => {
-  const simplified_data = user_data.map((user) => {
-    return {
-      id: user.id,
-      firstName: user.firstName,
-      lastName: user.lastName
-    }
-  })
-
   return (
-    <StyledPage>
-      <Header title='Users' />
-      <UsersTable entitites={simplified_data} />
-    </StyledPage>
+    <StyledHome>
+      <SideBar />
+      <div id='feed'>
+        <Header />
+        <Scroller />
+      </div>
+    </StyledHome>
   )
 }
 
