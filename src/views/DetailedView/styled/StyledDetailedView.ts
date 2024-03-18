@@ -30,9 +30,15 @@ const StyledDetailedView = styled.div`
     box-shadow: inset 0 0 0 0 ${({ theme }) => theme.colors.accent1};
     transition: 0.3s;
   }
-  a:hover {
+  a:hover,
+  a:active {
     box-shadow: inset 0 0 100px 0 ${({ theme }) => theme.colors.accent1};
     color: ${({ theme }) => theme.colors.hovered};
+  }
+
+  a:active {
+    scale: 0.95;
+    box-shadow: inset 0 0 100px 0 ${({ theme }) => theme.colors.accent2};
   }
 `
 export default StyledDetailedView
