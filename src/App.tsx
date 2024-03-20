@@ -5,6 +5,8 @@ import Home from './views/Home'
 import ConfirmDeleteModal from './views/Home/components/ConfirmDeleteModal/ConfirmDeleteModal'
 import DetailedView from './views/DetailedView'
 import ErrorPage from './views/ErrorPage/ErrorPage'
+import CreatePostView from './views/CreatePostView/CreatePostView'
+import EditPostView from './views/EditPostView/EditPostView'
 
 function App() {
   const [posts, setPosts] = useState(mockPosts)
@@ -17,11 +19,19 @@ function App() {
           errorElement={<ErrorPage />}
         />
         <Route path='/posts' element={<Home posts={posts} />} />
+        <Route path='posts/:id' element={<DetailedView />} />
         <Route
           path='posts/delete/:id'
           element={<ConfirmDeleteModal posts={posts} setPosts={setPosts} />}
         />
-        <Route path='posts/:id' element={<DetailedView />} />
+        <Route
+          path='posts/create'
+          element={<CreatePostView posts={posts} setPosts={setPosts} />}
+        />
+        <Route
+          path='posts/edit/:id'
+          element={<EditPostView posts={posts} setPosts={setPosts} />}
+        />
       </Routes>
     </BrowserRouter>
   )
