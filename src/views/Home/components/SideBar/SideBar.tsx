@@ -8,7 +8,7 @@ const SideBar = () => {
   }
   return (
     <StyledSideBar>
-      <button className='button' onClick={handleCreatePost}>
+      <button className='button' id='addBtn' onClick={handleCreatePost}>
         Write
       </button>
       <p>SideBarElem 2</p>

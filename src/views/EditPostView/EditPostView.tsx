@@ -3,6 +3,7 @@ import Post from '../../interfaces/Post'
 import { useNavigate, useParams } from 'react-router'
 import Header from '../Home/components/Header/Header'
 import StyledCreatePostView from '../CreatePostView/styled/StyledCreatePostView'
+import StyledFooterActions from './styled/StyledFooterActions'
 
 interface CreatePostViewProps {
   posts: Post[]
@@ -71,9 +72,22 @@ const EditPostView = ({ posts, setPosts }: CreatePostViewProps) => {
         placeholder="What's on your mind?"
         onChange={handleContentChange}
       ></textarea>
-
-      <button onClick={handleUpdateClick}>Update Post</button>
-      <button onClick={handleBackClick}>Back</button>
+      <StyledFooterActions>
+        <button
+          id='backButton'
+          className='button back'
+          onClick={handleBackClick}
+        >
+          Back
+        </button>
+        <button
+          id='editButton'
+          className='button update'
+          onClick={handleUpdateClick}
+        >
+          Update Post
+        </button>
+      </StyledFooterActions>
     </StyledCreatePostView>
   )
 }

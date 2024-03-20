@@ -7,9 +7,11 @@ interface ScrollerProps {
 }
 
 const Scroller = ({ posts }: ScrollerProps) => {
+  const sortedPosts = [...posts].sort((a, b) => a.title.localeCompare(b.title))
+
   return (
     <StyledScroller>
-      {posts.map((post) => (
+      {sortedPosts.map((post) => (
         <PostItem key={post.id.toString() + post.authorId} post={post} />
       ))}
       <p id='end'>*crickets* looks like you reached the end of your feed</p>

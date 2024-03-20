@@ -44,6 +44,7 @@ const PostHeader = ({
             size='xl'
           />
           <FontAwesomeIcon
+            id='editIcon'
             className='rowActionIcon'
             onClick={() => navigate(`/posts/edit/${id}`)}
             icon={faPenToSquare}

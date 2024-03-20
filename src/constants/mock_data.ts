@@ -76,10 +76,12 @@ export const mockPosts: Post[] = [
   },
   {
     id: 4,
-    authorId: 1,
-    title: 'Kanye shut yo bitch ass up and drop Vultures 2 man fr',
-    score: 12,
-    date: '2024-03-10'
+    authorId: 0,
+    title: 'This is a bot post',
+    content:
+      'Playwright is a decent testing framework because i cant make jest work how I want damn',
+    score: 0,
+    date: '2024-03-09'
   },
   {
     id: 5,
@@ -88,6 +90,29 @@ export const mockPosts: Post[] = [
     content:
       'I can sing, dance, cook meth, code, cut hair, and do a lot of other things, Please hmu if you have a job for me',
     score: 0,
+    date: '2024-03-09'
+  },
+  {
+    id: 6,
+    authorId: 1,
+    title: 'Kanye shut yo bitch ass up and drop Vultures 2 man fr',
+    score: 12,
+    date: '2024-03-10'
+  },
+  {
+    id: 7,
+    authorId: 0,
+    title: 'I am looking for a job',
+    content:
+      'I can sing, dance, cook meth, code, cut hair, and do a lot of other things, Please hmu if you have a job for me',
+    score: 0,
     date: '2024-03-14'
+  },
+  {
+    id: 8,
+    authorId: 2,
+    title: 'I made that b famooooous',
+    score: 10,
+    date: '2024-03-16'
   }
 ]
