@@ -11,6 +11,7 @@ const StyledPostItem = styled.div`
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  border: 2px solid ${({ theme }) => theme.colors.accent1};
   border-radius: 10px;
 
   #content {
@@ -29,6 +30,18 @@ const StyledPostItem = styled.div`
     justify-content: space-between;
     width: 100%;
     margin-top: 20px;
+  }
+
+  &:hover {
+    .rowActionIcon {
+      display: block;
+    }
+    .rowActionIcon:hover {
+      color: ${({ theme }) => theme.colors.text_highlight};
+    }
+    #deleteIcon:hover {
+      color: red;
+    }
   }
 `
 

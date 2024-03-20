@@ -1,24 +1,28 @@
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import StyledDetailedView from './styled/StyledDetailedView'
-import { useEffect } from 'react'
-import { users } from '../../constants/mock_data'
+import { mockPosts, mockUsers } from '../../constants/mock_data'
+import PostHeader from '../Home/components/PostItem/components/PostHeader/PostHeader'
+import PostContent from '../Home/components/PostItem/components/PostContent/PostContent'
+import PostFooter from '../Home/components/PostItem/components/PostFooter/PostFooter'
 
 const DetailedView = () => {
-  const navigate = useNavigate()
-
   const id = useParams().id
-  const user = users.find((user) => user.id.toString() === id)
-
-  useEffect(() => {
-    if (!user) {
-      navigate('/error')
-    }
-  }, [navigate, user])
+  const post = mockPosts.find((post) => post.id === parseInt(id!))
+  const { title, content, authorId, score, date } = post!
+  const user = mockUsers.find((user) => user.id === authorId)
   return (
-    user && (
+    post && (
       <StyledDetailedView>
-        <h1>{user.username}</h1>
-        <Link to='/'>Back</Link>
+        <PostHeader
+          user={user!}
+          title={title}
+          id={parseInt(id!)}
+          hasActions={false}
+        />
+        <PostContent content={content} />
+        <PostFooter date={date} score={score} />
+
+        <Link to={`/`}>Back</Link>
       </StyledDetailedView>
     )
   )

@@ -1,7 +1,7 @@
 import Post from '../interfaces/Post'
 import User from '../interfaces/User'
 
-export const users: User[] = [
+export const mockUsers: User[] = [
   {
     id: 0,
     username: 'aliciaH',
@@ -40,7 +40,7 @@ export const users: User[] = [
   }
 ]
 
-export const posts: Post[] = [
+export const mockPosts: Post[] = [
   {
     id: 0,
     authorId: 0,

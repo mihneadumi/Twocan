@@ -1,30 +1,29 @@
 import styled from 'styled-components'
 
 const StyledPostHeader = styled.div`
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: flex-start;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
 
-  h3 {
-    margin: 0;
-    font-size: 1.5em;
-    font-weight: 600;
-    color: ${({ theme }) => theme.colors.text};
+  .rowActionIcon {
+    display: none;
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+      filter: brightness(70%);
+    }
   }
 
-  #displayName {
-    margin: 0;
-    font-size: 1em;
-    font-weight: 400;
-    color: ${({ theme }) => theme.colors.text};
-  }
-
-  #username {
-    margin: 0;
-    font-size: 1em;
-    font-weight: 200;
-    color: ${({ theme }) => theme.colors.text_highlight};
+  #postActions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
   }
 `
 
