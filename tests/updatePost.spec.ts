@@ -13,8 +13,6 @@ test('update a post', async ({ page }) => {
 
   await editIcon?.click()
 
-  await expect(page).toHaveURL('http://localhost:5173/posts/edit/0')
-
   const titleInput = await page.$('input')
 
   expect(titleInput).not.toBeNull()

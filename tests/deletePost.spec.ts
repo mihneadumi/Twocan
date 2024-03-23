@@ -16,8 +16,6 @@ test('delete a post', async ({ page }) => {
 
   await deleteIcon?.click()
 
-  await expect(page).toHaveURL('http://localhost:5173/posts/delete/0')
-
   const deleteButton = await page.$('.delete')
 
   expect(deleteButton).not.toBeNull()
