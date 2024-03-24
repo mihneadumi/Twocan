@@ -6,6 +6,7 @@ const StyledHeader = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: flex-start;
+  gap: 20px;
   font-weight: 600;
 
   p {

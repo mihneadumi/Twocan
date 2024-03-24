@@ -6,12 +6,18 @@ const SideBar = () => {
   const handleCreatePost = () => {
     navigate('/posts/create')
   }
+
+  const handleStats = () => {
+    navigate('/stats')
+  }
   return (
     <StyledSideBar>
       <button className='button' id='addBtn' onClick={handleCreatePost}>
-        Write
+        Post
       </button>
-      <p>SideBarElem 2</p>
+      <button className='button' id='addBtn' onClick={handleStats}>
+        Stats
+      </button>
       <p>SideBarElem 3</p>
     </StyledSideBar>
   )

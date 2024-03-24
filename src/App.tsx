@@ -7,6 +7,7 @@ import DetailedView from './views/DetailedView'
 import ErrorPage from './views/ErrorPage/ErrorPage'
 import CreatePostView from './views/CreatePostView/CreatePostView'
 import EditPostView from './views/EditPostView/EditPostView'
+import StatsView from './views/StatsView/StatsView'
 
 function App() {
   const [posts, setPosts] = useState(mockPosts)
@@ -18,6 +19,7 @@ function App() {
           element={<Home posts={posts} />}
           errorElement={<ErrorPage />}
         />
+        <Route path='/stats' element={<StatsView posts={posts} />} />
         <Route path='/posts' element={<Home posts={posts} />} />
         <Route path='posts/:id' element={<DetailedView />} />
         <Route
