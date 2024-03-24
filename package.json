@@ -21,6 +21,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@mui/material": "^5.15.14",
     "@mui/x-charts": "^7.0.0",
+    "@reduxjs/toolkit": "^2.2.2",
     "@types/react-redux": "^7.1.33",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

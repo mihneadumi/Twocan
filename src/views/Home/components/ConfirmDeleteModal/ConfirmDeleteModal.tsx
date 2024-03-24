@@ -1,26 +1,24 @@
 import { useParams, useNavigate } from 'react-router-dom'
 import StyledConfirmDeleteModal from './styled/StyledConfirmDeleteModal'
-import Post from '../../../../interfaces/Post'
 import PostItem from '../PostItem/PostItem'
 import StyledModalActions from './styled/StyledModalActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { getPosts } from '../../../../redux/selectors'
+import { deletePost } from '../../../../redux/slices/postsSlice'
 
-interface ConfirmDeleteModalProps {
-  posts: Post[]
-  setPosts: React.Dispatch<React.SetStateAction<Post[]>>
-}
-
-const ConfirmDeleteModal = ({ posts, setPosts }: ConfirmDeleteModalProps) => {
+const ConfirmDeleteModal = () => {
   const { id } = useParams()
   const navigate = useNavigate()
+  const posts = useSelector(getPosts)
+  const dispatch = useDispatch()
 
   const onClose = () => {
     navigate('/posts')
   }
 
   const onDelete = () => {
-    const newPosts = posts.filter((post) => post.id !== parseInt(id!))
+    dispatch(deletePost(parseInt(id!)))
     navigate('/posts')
-    setPosts(newPosts)
   }
   return (
     <StyledConfirmDeleteModal>

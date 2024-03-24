@@ -2,15 +2,14 @@ import Header from './components/Header/Header'
 import Scroller from './components/Scroller/Scroller'
 import SideBar from './components/SideBar/SideBar'
 import StyledHome from './styled/StyledHome'
-import Post from '../../interfaces/Post'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { getPosts } from '../../redux/selectors'
 
-interface HomeProps {
-  posts: Post[]
-}
-
-const Home = ({ posts }: HomeProps) => {
+const Home = () => {
   const [hasPagination, setHasPagination] = useState(true)
+
+  const posts = useSelector(getPosts)
 
   return (
     <StyledHome>

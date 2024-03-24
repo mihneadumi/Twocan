@@ -14,7 +14,7 @@ const StyledHome = styled.div`
     align-items: flex-start;
     justify-content: center;
     padding: 0 100px;
-    width: 100%;
+    width: 60%;
     height: 100%;
   }
 `

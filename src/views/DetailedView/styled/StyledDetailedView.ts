@@ -29,6 +29,7 @@ const StyledDetailedView = styled.div`
     font-size: 1.5rem;
     font-weight: 600;
     border-radius: 10px;
+    color: ${({ theme }) => theme.colors.hovered};
     background-color: ${({ theme }) => theme.colors.accent2};
     box-shadow: inset 0 0 0 0 ${({ theme }) => theme.colors.accent1};
     transition: 0.3s;

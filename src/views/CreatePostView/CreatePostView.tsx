@@ -1,20 +1,21 @@
 import { useState } from 'react'
-import Post from '../../interfaces/Post'
-import getNewPostId from '../../utils/getNewPostId'
 import StyledCreatePostView from './styled/StyledCreatePostView'
 import { useNavigate } from 'react-router'
 import Header from '../Home/components/Header/Header'
 import StyledFooterActions from './styled/StyledFooterActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { getCurrentPostId, getPosts } from '../../redux/selectors'
+import { loadPosts } from '../../redux/slices/postsSlice'
 
-interface CreatePostViewProps {
-  posts: Post[]
-  setPosts: React.Dispatch<React.SetStateAction<Post[]>>
-}
-
-const CreatePostView = ({ posts, setPosts }: CreatePostViewProps) => {
+const CreatePostView = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+
   const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+  const posts = useSelector(getPosts)
+  const currentId = useSelector(getCurrentPostId)
 
   const handleTitleChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -40,7 +41,7 @@ const CreatePostView = ({ posts, setPosts }: CreatePostViewProps) => {
     const newPosts = [
       ...posts,
       {
-        id: getNewPostId(posts),
+        id: currentId + 1,
         authorId: 0,
         title: title,
         content: content,
@@ -48,8 +49,8 @@ const CreatePostView = ({ posts, setPosts }: CreatePostViewProps) => {
         date: new Date().toJSON().slice(0, 10)
       }
     ]
+    dispatch(loadPosts(newPosts))
 
-    setPosts(newPosts)
     navigate('/')
   }
 

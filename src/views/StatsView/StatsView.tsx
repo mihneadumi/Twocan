@@ -1,31 +1,11 @@
 import StyledStatsView from './styled/StyledStatsView'
-import Post from '../../interfaces/Post'
-import { mockUsers } from '../../constants/mock_data'
 import { PieChart } from '@mui/x-charts'
+import { useSelector } from 'react-redux'
+import { getPosts, getUsers } from '../../redux/selectors'
 
-interface StatsViewProps {
-  posts: Post[]
-}
-
-const StatsView = ({ posts }: StatsViewProps) => {
-  const users = mockUsers
-  // show a pie chart of the total score of all posts by each user
-  // the pie chart should have the user's name as the label
-  // and the total score of all their posts as the value
-  // piechart example:
-  // <PieChart
-  //       series={[
-  //         {
-  //           data: [
-  //             { id: 0, value: 10, label: 'series A' },
-  //             { id: 1, value: 15, label: 'series B' },
-  //             { id: 2, value: 20, label: 'series C' }
-  //           ]
-  //         }
-  //       ]}
-  //       width={400}
-  //       height={200}
-  //     />
+const StatsView = () => {
+  const users = useSelector(getUsers)
+  const posts = useSelector(getPosts)
 
   const userScores = users.map((user) => {
     const userPosts = posts.filter((post) => post.authorId === user.id)

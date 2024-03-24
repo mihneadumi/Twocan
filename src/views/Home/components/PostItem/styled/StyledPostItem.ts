@@ -6,8 +6,7 @@ const StyledPostItem = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  max-width: 590px;
-  min-width: 300px;
+  min-width: 360px;
   padding: 20px;
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);

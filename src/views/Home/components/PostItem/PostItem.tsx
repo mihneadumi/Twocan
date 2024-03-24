@@ -1,7 +1,9 @@
-import { mockUsers } from '../../../../constants/mock_data'
+import { useSelector } from 'react-redux'
 import Post from '../../../../interfaces/Post'
 import PostHeader from './components/PostHeader/PostHeader'
 import StyledPostItem from './styled/StyledPostItem'
+import { getUserById } from '../../../../redux/selectors'
+import { RootState } from '../../../../redux/store'
 
 interface PostItemProps {
   post: Post
@@ -9,7 +11,15 @@ interface PostItemProps {
 
 const PostItem = ({ post }: PostItemProps) => {
   const { id, authorId, title, score, date } = post
-  const user = mockUsers.find((user) => user.id === authorId)
+  const user = useSelector(
+    (state: RootState) => getUserById(state, authorId) || undefined
+  )
+
+  if (!user) {
+    console.log('Invalid user')
+    return null
+  }
+
   return (
     <StyledPostItem>
       <PostHeader user={user!} title={title} id={id} />

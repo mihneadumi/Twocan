@@ -4,18 +4,19 @@ import { useNavigate, useParams } from 'react-router'
 import Header from '../Home/components/Header/Header'
 import StyledCreatePostView from '../CreatePostView/styled/StyledCreatePostView'
 import StyledFooterActions from './styled/StyledFooterActions'
+import { useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { getPostById } from '../../redux/selectors'
+import { RootState } from '../../redux/store'
+import { updatePost } from '../../redux/slices/postsSlice'
 
-interface CreatePostViewProps {
-  posts: Post[]
-  setPosts: React.Dispatch<React.SetStateAction<Post[]>>
-}
-
-const EditPostView = ({ posts, setPosts }: CreatePostViewProps) => {
+const EditPostView = () => {
   const navigate = useNavigate()
   const params = useParams()
-  const postId = parseInt(params.id!)
-  const post = posts.find((post) => post.id === postId)
+  const dispatch = useDispatch()
 
+  const postId = parseInt(params.id!)
+  const post = useSelector((state: RootState) => getPostById(state, postId))
   const [title, setTitle] = useState(post?.title)
   const [content, setContent] = useState(post?.content || '')
 
@@ -40,18 +41,14 @@ const EditPostView = ({ posts, setPosts }: CreatePostViewProps) => {
       alert('Title cannot be empty')
       return
     }
-    const newPosts = posts.map((post) => {
-      if (post.id === postId) {
-        return {
-          ...post,
-          title: title!,
-          content: content!
-        }
-      }
-      return post
-    })
+    const updatedPost: Post = {
+      ...post!,
+      title: title!,
+      content: content ? content : ''
+    }
 
-    setPosts(newPosts)
+    dispatch(updatePost(updatedPost))
+
     navigate('/')
   }
 
