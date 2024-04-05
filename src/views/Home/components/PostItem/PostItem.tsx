@@ -7,9 +7,10 @@ import { RootState } from '../../../../redux/store'
 
 interface PostItemProps {
   post: Post
+  hasActions?: boolean
 }
 
-const PostItem = ({ post }: PostItemProps) => {
+const PostItem = ({ post, hasActions = true }: PostItemProps) => {
   const { id, authorId, title, score, date } = post
   const user = useSelector(
     (state: RootState) => getUserById(state, authorId) || undefined
@@ -22,7 +23,7 @@ const PostItem = ({ post }: PostItemProps) => {
 
   return (
     <StyledPostItem>
-      <PostHeader user={user!} title={title} id={id} />
+      <PostHeader hasActions={hasActions} user={user!} title={title} id={id} />
       {post.content && <p id='content'>{post.content}</p>}
       <div id='postFooter'>
         <p>Date: {date}</p>

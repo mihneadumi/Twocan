@@ -32,7 +32,7 @@ test('add a new post', async ({ page }) => {
   const createButton = await page.$('.create')
 
   // expect the create button to exist
-  expect(createButton).not.toBeNull()
+  await expect(createButton).not.toBeNull()
 
   // click the create button
   await createButton!.click()
@@ -45,5 +45,5 @@ test('add a new post', async ({ page }) => {
   const newPostCount = posts.length
 
   // expect the new post count to be 1 more than the initial post count
-  expect(newPostCount).toBe(initialPostCount + 1)
+  await expect(newPostCount).toBe(initialPostCount + 1)
 })

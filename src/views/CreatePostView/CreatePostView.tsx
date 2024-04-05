@@ -3,19 +3,13 @@ import StyledCreatePostView from './styled/StyledCreatePostView'
 import { useNavigate } from 'react-router'
 import Header from '../Home/components/Header/Header'
 import StyledFooterActions from './styled/StyledFooterActions'
-import { useDispatch, useSelector } from 'react-redux'
-import { getCurrentPostId, getPosts } from '../../redux/selectors'
-import { loadPosts } from '../../redux/slices/postsSlice'
+import axios from 'axios'
 
 const CreatePostView = () => {
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
   const navigate = useNavigate()
-  const dispatch = useDispatch()
-
-  const posts = useSelector(getPosts)
-  const currentId = useSelector(getCurrentPostId)
 
   const handleTitleChange = (e: React.FormEvent<HTMLInputElement>) => {
     e.preventDefault()
@@ -38,18 +32,14 @@ const CreatePostView = () => {
       alert('Title cannot be empty')
       return
     }
-    const newPosts = [
-      ...posts,
-      {
-        id: currentId + 1,
-        authorId: 0,
-        title: title,
-        content: content,
-        score: 0,
-        date: new Date().toJSON().slice(0, 10)
-      }
-    ]
-    dispatch(loadPosts(newPosts))
+
+    const newPost = {
+      Title: title,
+      Content: content,
+      AuthorId: 1
+    }
+
+    axios.post('https://localhost:7111/twocan/posts/add', newPost)
 
     navigate('/')
   }

@@ -1,5 +1,5 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { mockPosts, mockUsers } from './constants/mock_data'
+import { mockUsers } from './constants/mock_data'
 import Home from './views/Home'
 import ConfirmDeleteModal from './views/Home/components/ConfirmDeleteModal/ConfirmDeleteModal'
 import DetailedView from './views/DetailedView'
@@ -10,11 +10,44 @@ import StatsView from './views/StatsView/StatsView'
 import { useDispatch } from 'react-redux'
 import { loadPosts } from './redux/slices/postsSlice'
 import { loadUsers } from './redux/slices/usersSlice'
+import { useEffect } from 'react'
+import axios from 'axios'
 
 function App() {
   const dispatch = useDispatch()
-  dispatch(loadPosts(mockPosts))
   dispatch(loadUsers(mockUsers))
+
+  useEffect(() => {
+    axios
+      .get('https://localhost:7111/twocan/posts')
+      .then((response) => {
+        dispatch(loadPosts(response.data))
+      })
+      .catch((error) => {
+        console.error('There was an error in the post GET request!', error)
+      })
+  }, [dispatch])
+
+  useEffect(() => {
+    const eventSource = new EventSource(
+      'https://localhost:7111/twocan/postStream'
+    )
+    eventSource.onmessage = () => {
+      axios
+        .get('https://localhost:7111/twocan/posts')
+        .then((response) => {
+          dispatch(loadPosts(response.data))
+        })
+        .catch((error) => {
+          console.error('There was an error in the post GET request!', error)
+        })
+    }
+
+    return () => {
+      eventSource.close() // Clean up the event source on unmount
+    }
+  }, [dispatch])
+
   return (
     <BrowserRouter>
       <Routes>

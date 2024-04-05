@@ -7,14 +7,22 @@ import Pagination from '../Pagination/Pagination'
 interface ScrollerProps {
   posts: Post[]
   hasPagination?: boolean
+  postsPerPage?: number
 }
 
-const Scroller = ({ posts, hasPagination = false }: ScrollerProps) => {
+const Scroller = ({
+  posts,
+  hasPagination = false,
+  postsPerPage = 4
+}: ScrollerProps) => {
   const [page, setPage] = useState(1)
   let sortedPosts = [...posts].sort((a, b) => a.title.localeCompare(b.title))
 
   if (hasPagination) {
-    sortedPosts = sortedPosts.slice((page - 1) * 4, page * 4)
+    sortedPosts = sortedPosts.slice(
+      (page - 1) * postsPerPage,
+      page * postsPerPage
+    )
   }
 
   return (

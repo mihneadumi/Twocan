@@ -4,16 +4,14 @@ import { useNavigate, useParams } from 'react-router'
 import Header from '../Home/components/Header/Header'
 import StyledCreatePostView from '../CreatePostView/styled/StyledCreatePostView'
 import StyledFooterActions from './styled/StyledFooterActions'
-import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { getPostById } from '../../redux/selectors'
 import { RootState } from '../../redux/store'
-import { updatePost } from '../../redux/slices/postsSlice'
+import axios from 'axios'
 
 const EditPostView = () => {
   const navigate = useNavigate()
   const params = useParams()
-  const dispatch = useDispatch()
 
   const postId = parseInt(params.id!)
   const post = useSelector((state: RootState) => getPostById(state, postId))
@@ -47,9 +45,14 @@ const EditPostView = () => {
       content: content ? content : ''
     }
 
-    dispatch(updatePost(updatedPost))
-
-    navigate('/')
+    axios
+      .put(`https://localhost:7111/twocan/posts/update`, updatedPost)
+      .then(() => {
+        navigate('/')
+      })
+      .catch((error) => {
+        console.error('There was an error in the post PUT request!', error)
+      })
   }
 
   return (

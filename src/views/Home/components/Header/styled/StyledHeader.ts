@@ -7,6 +7,7 @@ const StyledHeader = styled.div`
   align-items: center;
   justify-content: space-between;
   font-weight: 600;
+  margin-bottom: 20px;
 
   p {
     margin: 10px 0;

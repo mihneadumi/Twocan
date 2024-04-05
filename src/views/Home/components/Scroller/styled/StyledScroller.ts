@@ -6,6 +6,7 @@ const StyledScroller = styled.div`
   align-items: flex-start;
   justify-content: flex-start;
   gap: 20px;
+  width: 100%;
   height: 100%;
 
   padding-top: 0;

@@ -4,12 +4,10 @@ import Post from '../../interfaces/Post'
 
 export interface PostsState {
   posts: Post[]
-  currentPostId: number
 }
 
 const initialState: PostsState = {
-  posts: [],
-  currentPostId: 0
+  posts: []
 }
 
 export const postsSlice = createSlice({
@@ -18,12 +16,9 @@ export const postsSlice = createSlice({
   reducers: {
     loadPosts: (state, action: PayloadAction<Post[]>) => {
       state.posts = action.payload
-      const ids = state.posts.map((post) => post.id)
-      state.currentPostId = Math.max(...ids)
     },
     addPost: (state, action: PayloadAction<Post>) => {
       state.posts.push(action.payload)
-      state.currentPostId = action.payload.id
     },
     deletePost: (state, action: PayloadAction<number>) => {
       state.posts = state.posts.filter((post) => post.id !== action.payload)
