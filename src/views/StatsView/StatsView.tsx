@@ -1,8 +1,9 @@
 import StyledStatsView from './styled/StyledStatsView'
 import { PieChart } from '@mui/x-charts'
 import { useSelector } from 'react-redux'
-import { getPosts, getUsers } from '../../redux/selectors'
+import { getPosts, getPostsLoading, getUsers } from '../../redux/selectors'
 import { useNavigate } from 'react-router-dom'
+import CircularProgress from '@mui/material/CircularProgress'
 
 const StatsView = () => {
   const navigate = useNavigate()
@@ -19,19 +20,25 @@ const StatsView = () => {
     navigate('/')
   }
 
+  const isLoading = useSelector(getPostsLoading)
   return (
     <StyledStatsView>
       <h1>Upvotes per user</h1>
-      <PieChart
-        series={[
-          {
-            data: userScores
-          }
-        ]}
-        width={600}
-        height={200}
-        sx={{ margin: 'auto' }}
-      />
+      {isLoading ? (
+        <CircularProgress color='inherit' />
+      ) : (
+        <PieChart
+          series={[
+            {
+              data: userScores
+            }
+          ]}
+          width={600}
+          height={200}
+          sx={{ margin: 'auto' }}
+        />
+      )}
+
       <button onClick={handleBack}>Back</button>
     </StyledStatsView>
   )

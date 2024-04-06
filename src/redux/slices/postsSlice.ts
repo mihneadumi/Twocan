@@ -4,13 +4,19 @@ import Post from '../../interfaces/Post'
 
 export interface PostsState {
   posts: Post[]
+  isOnline: boolean
   isLoading: boolean
+  hasPagination: boolean
+  postsPerPage: number
   error: string
 }
 
 const initialState: PostsState = {
   posts: [],
   isLoading: true,
+  isOnline: false,
+  hasPagination: false,
+  postsPerPage: 4,
   error: ''
 }
 
@@ -18,47 +24,60 @@ export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
-    getPosts: (state) => {
+    getPostsAction: (state) => {
       state.isLoading = true
       state.error = ''
     },
-    getPostsSuccess: (state, action: PayloadAction<Post[]>) => {
+    getPostsSuccessAction: (state, action: PayloadAction<Post[]>) => {
       state.posts = action.payload
       state.isLoading = false
+      state.isOnline = true
     },
-    getPostsFailure: (state, action: PayloadAction<string>) => {
+    getPostsFailureAction: (state, action: PayloadAction<string>) => {
       state.isLoading = true
       state.error = action.payload
     },
-    loadPosts: (state, action: PayloadAction<Post[]>) => {
+    loadPostsAction: (state, action: PayloadAction<Post[]>) => {
       state.posts = action.payload
     },
-    addPost: (state, action: PayloadAction<Post>) => {
+    addPostAction: (state, action: PayloadAction<Post>) => {
       state.posts.push(action.payload)
     },
-    deletePost: (state, action: PayloadAction<number>) => {
+    deletePostAction: (state, action: PayloadAction<number>) => {
       state.posts = state.posts.filter((post) => post.id !== action.payload)
     },
-    updatePost: (state, action: PayloadAction<Post>) => {
+    updatePostAction: (state, action: PayloadAction<Post>) => {
       const index = state.posts.findIndex(
         (post) => post.id === action.payload.id
       )
       state.posts[index] = action.payload
+    },
+    switchPostsPaginationAction: (state) => {
+      state.hasPagination = !state.hasPagination
+    },
+    setPostsPerPageAction: (state, action: PayloadAction<number>) => {
+      state.postsPerPage = action.payload
+    },
+    setIsOnlineAction: (state, action: PayloadAction<boolean>) => {
+      state.isOnline = action.payload
     }
   }
 })
 
-export const GET_POSTS = `posts/getPosts`
+export const GET_POSTS = `posts/getPostsAction`
 
 // Action creators are generated for each case reducer function
 export const {
-  addPost,
-  loadPosts,
-  deletePost,
-  updatePost,
-  getPosts,
-  getPostsSuccess,
-  getPostsFailure
+  addPostAction,
+  loadPostsAction,
+  deletePostAction,
+  updatePostAction,
+  getPostsAction,
+  getPostsSuccessAction,
+  getPostsFailureAction,
+  switchPostsPaginationAction,
+  setPostsPerPageAction,
+  setIsOnlineAction
 } = postsSlice.actions
 
 export default postsSlice.reducer

@@ -3,34 +3,39 @@ import PostItem from '../PostItem/PostItem'
 import Post from '../../../../interfaces/Post'
 import { useState } from 'react'
 import Pagination from '../Pagination/Pagination'
+import { useSelector } from 'react-redux'
+import {
+  getPostsLoading,
+  getPostsPagination,
+  getPostsPerPage
+} from '../../../../redux/selectors'
+import CircularProgress from '@mui/material/CircularProgress'
 
 interface ScrollerProps {
   posts: Post[]
-  hasPagination?: boolean
-  postsPerPage?: number
 }
 
-const Scroller = ({
-  posts,
-  hasPagination = false,
-  postsPerPage = 4
-}: ScrollerProps) => {
+const Scroller = ({ posts }: ScrollerProps) => {
   const [page, setPage] = useState(1)
   let sortedPosts = [...posts].sort((a, b) => a.title.localeCompare(b.title))
-
+  const hasPagination = useSelector(getPostsPagination)
+  const postsPerPage = useSelector(getPostsPerPage)
   if (hasPagination) {
     sortedPosts = sortedPosts.slice(
       (page - 1) * postsPerPage,
       page * postsPerPage
     )
   }
+  const isLoading = useSelector(getPostsLoading)
 
   return (
     <StyledScroller>
       {sortedPosts.map((post) => (
         <PostItem key={post.id.toString() + post.authorId} post={post} />
       ))}
-      {hasPagination ? (
+      {isLoading ? (
+        <CircularProgress color='inherit' sx={{ marginLeft: 7 }} />
+      ) : hasPagination ? (
         <Pagination
           page={page}
           setPage={setPage}

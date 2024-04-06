@@ -11,10 +11,10 @@ const StyledHome = styled.div`
   #feed {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    justify-content: center;
+    align-items: center;
+    justify-content: flex-start;
     padding: 0 100px;
-    width: 60%;
+    min-width: 60%;
     height: 100%;
   }
 `

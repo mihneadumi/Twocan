@@ -8,36 +8,46 @@ import CreatePostView from './views/CreatePostView/CreatePostView'
 import EditPostView from './views/EditPostView/EditPostView'
 import StatsView from './views/StatsView/StatsView'
 import { useDispatch } from 'react-redux'
-import { getPosts, loadPosts } from './redux/slices/postsSlice'
+import {
+  getPostsAction,
+  getPostsFailureAction,
+  setIsOnlineAction
+} from './redux/slices/postsSlice'
 import { loadUsers } from './redux/slices/usersSlice'
 import { useEffect } from 'react'
-import axios from 'axios'
+import AdminView from './views/AdminView/AdminView'
 
 function App() {
   const dispatch = useDispatch()
   dispatch(loadUsers(mockUsers))
 
   useEffect(() => {
-    axios
-      .get('https://localhost:7111/twocan/posts')
-      .then((response) => {
-        dispatch(loadPosts(response.data))
-      })
-      .catch((error) => {
-        console.error('There was an error in the post GET request!', error)
-      })
-  }, [dispatch])
-
-  useEffect(() => {
     const eventSource = new EventSource(
       'https://localhost:7111/twocan/postStream'
     )
     eventSource.onmessage = () => {
-      dispatch(getPosts())
+      try {
+        dispatch(getPostsAction())
+      } catch (error) {
+        console.error('Error occurred with SSE:', error)
+      }
+    }
+
+    eventSource.onerror = (error) => {
+      console.error('Error occurred with SSE:', error)
+      dispatch(getPostsFailureAction(error.toString()))
     }
 
     return () => {
-      eventSource.close() // Clean up the event source on unmount
+      eventSource.close()
+    }
+  }, [dispatch])
+
+  useEffect(() => {
+    const isOnlineSetter = () => dispatch(setIsOnlineAction(navigator.onLine))
+    const interval = setInterval(isOnlineSetter, 6000) // call the function name only not with function with call `()`
+    return () => {
+      clearInterval(interval) // for component unmount stop the interval
     }
   }, [dispatch])
 
@@ -45,8 +55,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
-        <Route path='/stats' element={<StatsView />} />
         <Route path='/posts' element={<Home />} />
+        <Route path='/stats' element={<StatsView />} />
+        <Route path='/admin' element={<AdminView />} />
         <Route path='posts/:id' element={<DetailedView />} />
         <Route path='posts/delete/:id' element={<ConfirmDeleteModal />} />
         <Route path='posts/create' element={<CreatePostView />} />

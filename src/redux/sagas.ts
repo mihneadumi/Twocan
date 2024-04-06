@@ -2,8 +2,8 @@ import axios, { AxiosResponse } from 'axios'
 import { put, takeLatest } from 'redux-saga/effects'
 import {
   GET_POSTS,
-  getPostsFailure,
-  getPostsSuccess
+  getPostsFailureAction,
+  getPostsSuccessAction
 } from './slices/postsSlice'
 import Post from '../interfaces/Post'
 
@@ -14,9 +14,9 @@ function* getPostsSaga() {
     const response: AxiosResponse<Post[]> = yield axios.get(
       'https://localhost:7111/twocan/posts'
     )
-    yield put(getPostsSuccess(response.data))
+    yield put(getPostsSuccessAction(response.data))
   } catch (error: unknown) {
-    yield put(getPostsFailure(error as string))
+    yield put(getPostsFailureAction(error as string))
   }
 }
 

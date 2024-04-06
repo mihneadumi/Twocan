@@ -1,4 +1,4 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineSlices, configureStore } from '@reduxjs/toolkit'
 import postsSlice from './slices/postsSlice'
 import usersSlice from './slices/usersSlice'
 import createSagaMiddleware from '@redux-saga/core'
@@ -6,10 +6,14 @@ import rootSaga from './rootSagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
+const rootReducer = combineSlices({
+  posts: postsSlice,
+  users: usersSlice
+})
+
 export const store = configureStore({
   reducer: {
-    posts: postsSlice,
-    users: usersSlice
+    ui: rootReducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(sagaMiddleware)

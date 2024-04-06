@@ -1,24 +1,51 @@
 import { useNavigate } from 'react-router'
 import StyledSideBar from './styled/StyledSideBar'
+import { useSelector } from 'react-redux'
+import { getPostsIsOnline, getPostsLoading } from '../../../../redux/selectors'
 
 const SideBar = () => {
   const navigate = useNavigate()
-  const handleCreatePost = () => {
+  const handlePostClick = () => {
     navigate('/posts/create')
   }
 
-  const handleStats = () => {
+  const handleStatsClick = () => {
     navigate('/stats')
   }
+
+  const handleAdminClick = () => {
+    navigate('/admin')
+  }
+
+  const isOnline = useSelector(getPostsIsOnline)
+  const isLoading = useSelector(getPostsLoading)
+
   return (
     <StyledSideBar>
-      <button className='button' id='addBtn' onClick={handleCreatePost}>
+      <button
+        className='button'
+        id='addBtn'
+        onClick={handlePostClick}
+        disabled={!isOnline || isLoading}
+      >
         Post
       </button>
-      <button className='button' id='addBtn' onClick={handleStats}>
+      <button
+        className='button'
+        id='statsBtn'
+        onClick={handleStatsClick}
+        disabled={!isOnline || isLoading}
+      >
         Stats
       </button>
-      <p>SideBarElem 3</p>
+      <button
+        className='button'
+        id='settingsBtn'
+        onClick={handleAdminClick}
+        disabled={!isOnline || isLoading}
+      >
+        Admin
+      </button>
     </StyledSideBar>
   )
 }

@@ -1,19 +1,15 @@
 import styled from 'styled-components'
 
-const StyledSideBar = styled.div`
-  height: 100%;
-  max-width: 320px;
-  min-width: 120px;
-  padding-top: 20px;
+const StyledAdminViewFooter = styled.div`
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
+  flex-direction: row;
   align-items: center;
-  gap: 5px;
-  background-color: ${({ theme }) => theme.colors.base};
-  border-right: 1px solid ${({ theme }) => theme.colors.accent1};
+  justify-content: center;
+  gap: 20px;
 
-  .button {
+  margin-top: 20px;
+
+  button {
     padding: 5px 20px;
     min-width: 90px;
     max-width: 90px;
@@ -26,9 +22,8 @@ const StyledSideBar = styled.div`
     transition: 0.3s;
   }
 
-  .button:hover {
+  button:hover {
     filter: brightness(70%);
   }
 `
-
-export default StyledSideBar
+export default StyledAdminViewFooter
