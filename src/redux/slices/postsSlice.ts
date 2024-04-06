@@ -4,16 +4,32 @@ import Post from '../../interfaces/Post'
 
 export interface PostsState {
   posts: Post[]
+  isLoading: boolean
+  error: string
 }
 
 const initialState: PostsState = {
-  posts: []
+  posts: [],
+  isLoading: true,
+  error: ''
 }
 
 export const postsSlice = createSlice({
   name: 'posts',
   initialState,
   reducers: {
+    getPosts: (state) => {
+      state.isLoading = true
+      state.error = ''
+    },
+    getPostsSuccess: (state, action: PayloadAction<Post[]>) => {
+      state.posts = action.payload
+      state.isLoading = false
+    },
+    getPostsFailure: (state, action: PayloadAction<string>) => {
+      state.isLoading = true
+      state.error = action.payload
+    },
     loadPosts: (state, action: PayloadAction<Post[]>) => {
       state.posts = action.payload
     },
@@ -32,7 +48,17 @@ export const postsSlice = createSlice({
   }
 })
 
+export const GET_POSTS = `posts/getPosts`
+
 // Action creators are generated for each case reducer function
-export const { addPost, loadPosts, deletePost, updatePost } = postsSlice.actions
+export const {
+  addPost,
+  loadPosts,
+  deletePost,
+  updatePost,
+  getPosts,
+  getPostsSuccess,
+  getPostsFailure
+} = postsSlice.actions
 
 export default postsSlice.reducer

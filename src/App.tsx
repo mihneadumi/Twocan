@@ -8,7 +8,7 @@ import CreatePostView from './views/CreatePostView/CreatePostView'
 import EditPostView from './views/EditPostView/EditPostView'
 import StatsView from './views/StatsView/StatsView'
 import { useDispatch } from 'react-redux'
-import { loadPosts } from './redux/slices/postsSlice'
+import { getPosts, loadPosts } from './redux/slices/postsSlice'
 import { loadUsers } from './redux/slices/usersSlice'
 import { useEffect } from 'react'
 import axios from 'axios'
@@ -33,14 +33,7 @@ function App() {
       'https://localhost:7111/twocan/postStream'
     )
     eventSource.onmessage = () => {
-      axios
-        .get('https://localhost:7111/twocan/posts')
-        .then((response) => {
-          dispatch(loadPosts(response.data))
-        })
-        .catch((error) => {
-          console.error('There was an error in the post GET request!', error)
-        })
+      dispatch(getPosts())
     }
 
     return () => {
