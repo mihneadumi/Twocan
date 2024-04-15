@@ -3,31 +3,42 @@ import User from '../../interfaces/User'
 
 export interface UsersState {
   users: User[]
-  currentUserId: number
+  isLoading: boolean
+  error?: string
 }
 
 const initialState: UsersState = {
   users: [],
-  currentUserId: 0
+  isLoading: true,
+  error: ''
 }
 
 export const usersSlice = createSlice({
   name: 'users',
   initialState,
   reducers: {
-    loadUsers: (state, action: PayloadAction<User[]>) => {
+    getUsersAction: (state) => {
+      state.isLoading = true
+      state.error = ''
+    },
+    getUsersSuccessAction: (state, action: PayloadAction<User[]>) => {
       state.users = action.payload
-      const ids = state.users.map((user) => user.id)
-      state.currentUserId = Math.max(...ids)
+      state.isLoading = false
     },
-    addUser: (state, action: PayloadAction<User>) => {
+    getUsersFailureAction: (state, action: PayloadAction<string>) => {
+      state.isLoading = true
+      state.error = action.payload
+    },
+    loadUsersAction: (state, action: PayloadAction<User[]>) => {
+      state.users = action.payload
+    },
+    addUserAction: (state, action: PayloadAction<User>) => {
       state.users.push(action.payload)
-      state.currentUserId = action.payload.id
     },
-    deleteUser: (state, action: PayloadAction<number>) => {
+    deleteUserAction: (state, action: PayloadAction<number>) => {
       state.users = state.users.filter((user) => user.id !== action.payload)
     },
-    updateUser: (state, action: PayloadAction<User>) => {
+    updateUserAction: (state, action: PayloadAction<User>) => {
       const index = state.users.findIndex(
         (user) => user.id === action.payload.id
       )
@@ -36,7 +47,17 @@ export const usersSlice = createSlice({
   }
 })
 
+export const GET_USERS = 'users/getUsersAction'
+
 // Action creators are generated for each case reducer function
-export const { addUser, loadUsers, deleteUser, updateUser } = usersSlice.actions
+export const {
+  getUsersAction,
+  getUsersSuccessAction,
+  getUsersFailureAction,
+  addUserAction,
+  loadUsersAction,
+  deleteUserAction,
+  updateUserAction
+} = usersSlice.actions
 
 export default usersSlice.reducer

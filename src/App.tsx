@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import { mockUsers } from './constants/mock_data'
 import Home from './views/Home'
 import ConfirmDeleteModal from './views/Home/components/ConfirmDeleteModal/ConfirmDeleteModal'
 import DetailedView from './views/DetailedView'
@@ -13,13 +12,13 @@ import {
   getPostsFailureAction,
   setIsOnlineAction
 } from './redux/slices/postsSlice'
-import { loadUsers } from './redux/slices/usersSlice'
+import { getUsersAction } from './redux/slices/usersSlice'
 import { useEffect } from 'react'
 import AdminView from './views/AdminView/AdminView'
+import UserProfileView from './views/UserProfileView/UserProfileView'
 
 function App() {
   const dispatch = useDispatch()
-  dispatch(loadUsers(mockUsers))
 
   useEffect(() => {
     const eventSource = new EventSource(
@@ -28,6 +27,7 @@ function App() {
     eventSource.onmessage = () => {
       try {
         dispatch(getPostsAction())
+        dispatch(getUsersAction())
       } catch (error) {
         console.error('Error occurred with SSE:', error)
       }
@@ -62,6 +62,8 @@ function App() {
         <Route path='posts/delete/:id' element={<ConfirmDeleteModal />} />
         <Route path='posts/create' element={<CreatePostView />} />
         <Route path='posts/edit/:id' element={<EditPostView />} />
+        <Route path='users/:id' element={<UserProfileView />} />
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
   )

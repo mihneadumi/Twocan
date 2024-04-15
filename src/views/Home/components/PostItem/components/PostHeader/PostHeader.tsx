@@ -27,12 +27,18 @@ const PostHeader = ({
   const handleDelete = () => {
     navigate(`/posts/delete/${id}`)
   }
+  const handleUsernameClick = () => {
+    navigate(`/users/${user.id}`)
+  }
   return (
     <StyledPostHeader>
       <StyledInformation>
         <h3>{title}</h3>
         <p id='displayName'>
-          By {displayName} <span id='username'>@{username}</span>
+          By {displayName}{' '}
+          <span id='username' onClick={handleUsernameClick}>
+            @{username}
+          </span>
         </p>
       </StyledInformation>
       {hasActions && (

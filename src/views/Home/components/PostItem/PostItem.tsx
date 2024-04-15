@@ -12,9 +12,7 @@ interface PostItemProps {
 
 const PostItem = ({ post, hasActions = true }: PostItemProps) => {
   const { id, authorId, title, score, date } = post
-  const user = useSelector(
-    (state: RootState) => getUserById(state, authorId) || undefined
-  )
+  const user = useSelector((state: RootState) => getUserById(state, authorId))
 
   if (!user) {
     console.log('Invalid user')

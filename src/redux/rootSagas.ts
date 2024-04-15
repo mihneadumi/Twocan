@@ -1,10 +1,11 @@
 import { all, fork } from 'redux-saga/effects'
-import watchGetPosts from './sagas'
+import watchGetPosts, { watchGetUsers } from './sagas'
 
 const rootSaga = function* () {
   yield all([
-    fork(watchGetPosts)
-    // Other forks
+    fork(watchGetPosts),
+    fork(watchGetUsers)
+    // other watchers go here
   ])
 }
 

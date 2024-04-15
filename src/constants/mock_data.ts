@@ -6,7 +6,7 @@ export const mockUsers: User[] = [
     id: 0,
     username: 'aliciaH',
     displayName: 'Alicia H',
-    posts: 2,
+    posts: [0, 4, 5, 7],
     followers: 0,
     following: 0,
     bio: 'I am a developer'
@@ -15,7 +15,7 @@ export const mockUsers: User[] = [
     id: 1,
     username: 'billyBal',
     displayName: 'Billy Balosu',
-    posts: 1,
+    posts: [1, 6, 7],
     followers: 0,
     following: 0,
     bio: 'I am definitely not a bot'
@@ -24,7 +24,7 @@ export const mockUsers: User[] = [
     id: 2,
     username: 'SunshineLove123',
     displayName: 'Samira',
-    posts: 1,
+    posts: [2, 8],
     followers: 0,
     following: 0,
     bio: 'It is always sunny in my world'
@@ -33,7 +33,7 @@ export const mockUsers: User[] = [
     id: 3,
     username: 'ye',
     displayName: 'Kanye East',
-    posts: 1,
+    posts: [3],
     followers: 0,
     following: 0,
     bio: 'I am the Greatest artist of all T I M E'

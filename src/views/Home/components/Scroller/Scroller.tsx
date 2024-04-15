@@ -4,21 +4,17 @@ import Post from '../../../../interfaces/Post'
 import { useState } from 'react'
 import Pagination from '../Pagination/Pagination'
 import { useSelector } from 'react-redux'
-import {
-  getPostsLoading,
-  getPostsPagination,
-  getPostsPerPage
-} from '../../../../redux/selectors'
+import { getPostsLoading, getPostsPerPage } from '../../../../redux/selectors'
 import CircularProgress from '@mui/material/CircularProgress'
 
 interface ScrollerProps {
   posts: Post[]
+  hasPagination: boolean
 }
 
-const Scroller = ({ posts }: ScrollerProps) => {
+const Scroller = ({ posts, hasPagination }: ScrollerProps) => {
   const [page, setPage] = useState(1)
   let sortedPosts = [...posts].sort((a, b) => a.title.localeCompare(b.title))
-  const hasPagination = useSelector(getPostsPagination)
   const postsPerPage = useSelector(getPostsPerPage)
   if (hasPagination) {
     sortedPosts = sortedPosts.slice(

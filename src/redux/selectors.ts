@@ -8,7 +8,8 @@ export const getUsers = (state: RootState) => state.ui.users.users
 export const getUserById = (state: RootState, id: number) =>
   state.ui.users.users.find((user) => user.id === id)
 
-export const getPostsLoading = (state: RootState) => state.ui.posts.isLoading
+export const getPostsLoading = (state: RootState) =>
+  state.ui.posts.isLoading || state.ui.users.isLoading
 export const getPostsError = (state: RootState) => !!state.ui.posts.error
 export const getPostsIsOnline = (state: RootState) => state.ui.posts.isOnline
 
