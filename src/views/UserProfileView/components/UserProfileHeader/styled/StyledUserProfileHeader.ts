@@ -1,15 +1,15 @@
 import styled from 'styled-components'
 
 const StyledUserProfileHeader = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  width: 100%;
 
   #coverImg {
     width: 100%;
-    height: 300px;
+    height: 256px;
     object-fit: cover;
   }
   #profileImg {

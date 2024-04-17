@@ -24,6 +24,14 @@ const SideBar = () => {
     <StyledSideBar>
       <button
         className='button'
+        id='homeBtn'
+        onClick={() => navigate('/')}
+        disabled={!isOnline || isLoading}
+      >
+        Home
+      </button>
+      <button
+        className='button'
         id='addBtn'
         onClick={handlePostClick}
         disabled={!isOnline || isLoading}

@@ -1,4 +1,5 @@
 import User from '../../../../interfaces/User'
+import HeaderInfo from '../HeaderInfo/HeaderInfo'
 import StyledUserProfileHeader from './styled/StyledUserProfileHeader'
 
 interface UserProfileHeaderProps {
@@ -6,13 +7,11 @@ interface UserProfileHeaderProps {
 }
 
 const UserProfileHeader = ({ user }: UserProfileHeaderProps) => {
-  const { username, displayName } = user
   return (
     <StyledUserProfileHeader>
       <img id='coverImg' src='/defaultCover.png' alt='Cover' />
       <img id='profileImg' src='/defaultAvatar.png' alt='Profile' />
-      <h1>{displayName}</h1>
-      <h2>@{username}</h2>
+      <HeaderInfo user={user} />
     </StyledUserProfileHeader>
   )
 }

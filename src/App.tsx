@@ -44,6 +44,11 @@ function App() {
   }, [dispatch])
 
   useEffect(() => {
+    dispatch(getPostsAction())
+    dispatch(getUsersAction())
+  }, [dispatch])
+
+  useEffect(() => {
     const isOnlineSetter = () => dispatch(setIsOnlineAction(navigator.onLine))
     const interval = setInterval(isOnlineSetter, 6000) // call the function name only not with function with call `()`
     return () => {

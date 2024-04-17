@@ -36,12 +36,17 @@ const CreatePostView = () => {
     const newPost = {
       Title: title,
       Content: content,
-      AuthorId: 1
+      AuthorId: 0
     }
 
-    axios.post('https://localhost:7111/twocan/posts/add', newPost)
-
-    navigate('/')
+    axios
+      .post('https://localhost:7111/twocan/posts/add', newPost)
+      .then(() => {
+        navigate('/')
+      })
+      .catch((err) => {
+        console.error(err)
+      })
   }
 
   return (

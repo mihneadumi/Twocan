@@ -37,7 +37,9 @@ const UserProfileView = () => {
         {!userPosts.length ? (
           <p>User has no posts</p>
         ) : (
-          <Scroller posts={userPosts} hasPagination={false} />
+          <div id='scrollerContainer'>
+            <Scroller posts={userPosts} hasPagination={false} />
+          </div>
         )}
       </div>
     </StyledUserProfileView>

@@ -14,7 +14,15 @@ const StyledUserProfileView = styled.div`
     align-items: center;
     justify-content: flex-start;
     min-width: 60%;
+    max-width: 60%;
     height: 100%;
+    border-right: 1px solid ${({ theme }) => theme.colors.accent1};
+
+    #scrollerContainer {
+      padding: 0 40px;
+      overflow: scroll;
+      scrollbar-width: none;
+    }
   }
 `
 
