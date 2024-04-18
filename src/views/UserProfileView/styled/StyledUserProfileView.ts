@@ -17,11 +17,12 @@ const StyledUserProfileView = styled.div`
     max-width: 60%;
     height: 100%;
     border-right: 1px solid ${({ theme }) => theme.colors.accent1};
+    overflow: scroll;
+    scrollbar-width: none;
 
     #scrollerContainer {
       padding: 0 40px;
-      overflow: scroll;
-      scrollbar-width: none;
+      overflow: visible;
     }
   }
 `
