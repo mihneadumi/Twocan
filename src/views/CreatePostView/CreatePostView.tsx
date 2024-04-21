@@ -4,6 +4,9 @@ import { useNavigate } from 'react-router'
 import Header from '../Home/components/Header/Header'
 import StyledFooterActions from './styled/StyledFooterActions'
 import axios from 'axios'
+import { MenuItem, Select, SelectChangeEvent } from '@mui/material'
+import { useSelector } from 'react-redux'
+import { getUsers } from '../../redux/selectors'
 
 const CreatePostView = () => {
   const [title, setTitle] = useState('')
@@ -36,7 +39,7 @@ const CreatePostView = () => {
     const newPost = {
       Title: title,
       Content: content,
-      AuthorId: 0
+      AuthorId: selectedUser
     }
 
     axios
@@ -48,10 +51,38 @@ const CreatePostView = () => {
         console.error(err)
       })
   }
+  const handleNewUser = () => {
+    navigate('/users/create')
+  }
+  const [selectedUser, setSelectedUser] = useState(0)
+  const users = useSelector(getUsers)
+
+  const handleUserSelectChange = (event: SelectChangeEvent) => {
+    setSelectedUser(parseInt(event.target.value))
+  }
 
   return (
     <StyledCreatePostView>
       <Header title='New Post' />
+      <div id='userSelect'>
+        <Select
+          labelId='selectLabel'
+          size='small'
+          id='field'
+          value={selectedUser.toString()}
+          label='Nr of posts per page'
+          onChange={handleUserSelectChange}
+        >
+          {users.map((user) => (
+            <MenuItem key={user.id} value={user.id}>
+              {user.username}
+            </MenuItem>
+          ))}
+        </Select>
+        <button id='createUser' onClick={handleNewUser}>
+          +
+        </button>
+      </div>
       <input
         className='field'
         maxLength={100}

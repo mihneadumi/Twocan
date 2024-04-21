@@ -23,5 +23,21 @@ const StyledHeaderInfo = styled.div`
   #stats {
     margin-top: 20px;
   }
+
+  #deleteUser {
+    padding: 5px 20px;
+    border: 1px solid ${({ theme }) => theme.colors.accent2};
+    border-radius: 5px;
+    font-size: 1em;
+    font-weight: 600;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: 0.3s;
+    background-color: #ff4d4d;
+
+    &:hover {
+      filter: brightness(70%);
+    }
+  }
 `
 export default StyledHeaderInfo

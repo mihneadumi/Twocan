@@ -1,29 +1,14 @@
 import styled from 'styled-components'
 
-const StyledCreatePostView = styled.div`
+const StyledCreateUserView = styled.div`
   height: 100%;
+
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
   gap: 5px;
 
-  #createUser {
-    margin-left: 20px;
-    padding: 5px 10px;
-    border: 1px solid ${({ theme }) => theme.colors.accent2};
-    border-radius: 5px;
-    font-size: 1em;
-    font-weight: 600;
-    margin-top: 20px;
-    cursor: pointer;
-    transition: 0.3s;
-    background-color: ${({ theme }) => theme.colors.accent2};
-
-    &:hover {
-      filter: brightness(70%);
-    }
-  }
   .field {
     border: 1px solid black;
     border-radius: 3px;
@@ -54,4 +39,4 @@ const StyledCreatePostView = styled.div`
   }
 `
 
-export default StyledCreatePostView
+export default StyledCreateUserView

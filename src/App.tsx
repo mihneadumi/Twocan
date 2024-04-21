@@ -16,6 +16,7 @@ import { getUsersAction } from './redux/slices/usersSlice'
 import { useEffect } from 'react'
 import AdminView from './views/AdminView/AdminView'
 import UserProfileView from './views/UserProfileView/UserProfileView'
+import CreateUserView from './views/CreateUserView/CreateUserView'
 
 function App() {
   const dispatch = useDispatch()
@@ -68,6 +69,7 @@ function App() {
         <Route path='posts/create' element={<CreatePostView />} />
         <Route path='posts/edit/:id' element={<EditPostView />} />
         <Route path='users/:id' element={<UserProfileView />} />
+        <Route path='users/create' element={<CreateUserView />} />
         <Route path='*' element={<ErrorPage />} />
       </Routes>
     </BrowserRouter>
