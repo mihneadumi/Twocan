@@ -19,8 +19,18 @@ const UserProfileView = () => {
 
   const [userPosts, setUserPosts] = useState<Post[]>([])
   useEffect(() => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('sessionToken')}`
+      }
+    }
     axios
-      .get(`https://localhost:7111/twocan/users/${user!.id}/posts`)
+      .get(
+        `https://twocanapiserver.azurewebsites.net/twocan/users/${
+          user!.id
+        }/posts`,
+        config
+      )
       .then((response) => {
         setUserPosts(response.data)
       })

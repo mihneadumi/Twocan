@@ -41,7 +41,7 @@ const DetailedView = () => {
         <PostContent content={content} />
         <PostFooter date={date} score={score} />
 
-        <Link to={`/`}>Back</Link>
+        <Link to={`/posts`}>Back</Link>
       </StyledDetailedView>
     )
   )

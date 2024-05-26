@@ -42,19 +42,25 @@ const AdminView = () => {
     setPostsPerFiveSeconds(parseInt(event.target.value))
   }
   const handleBackClick = () => {
-    navigate('/')
+    navigate('/posts')
   }
 
   const handleSaveClick = () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('sessionToken')}`
+      }
+    }
     axios
       .put(
-        `https://localhost:7111/twocan/setBotsNumber/${postsPerFiveSeconds}`,
+        `https://twocanapiserver.azurewebsites.net/twocan/setBotsNumber/${postsPerFiveSeconds}`,
         {
           n: postsPerFiveSeconds
-        }
+        },
+        config
       )
       .then(() => {
-        navigate('/')
+        navigate('/posts')
       })
       .catch(() => {
         alert('Changes could not be saved. Please try again.')

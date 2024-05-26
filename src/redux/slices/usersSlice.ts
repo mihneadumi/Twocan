@@ -3,12 +3,15 @@ import User from '../../interfaces/User'
 
 export interface UsersState {
   users: User[]
+  currentUserId: number
+  sessionToken?: string
   isLoading: boolean
   error?: string
 }
 
 const initialState: UsersState = {
   users: [],
+  currentUserId: -1,
   isLoading: true,
   error: ''
 }
@@ -43,6 +46,12 @@ export const usersSlice = createSlice({
         (user) => user.id === action.payload.id
       )
       state.users[index] = action.payload
+    },
+    setCurrentUserIdAction: (state, action: PayloadAction<number>) => {
+      state.currentUserId = action.payload
+    },
+    setSessionTokenAction: (state, action: PayloadAction<string>) => {
+      state.sessionToken = action.payload
     }
   }
 })
@@ -57,7 +66,9 @@ export const {
   addUserAction,
   loadUsersAction,
   deleteUserAction,
-  updateUserAction
+  updateUserAction,
+  setCurrentUserIdAction,
+  setSessionTokenAction
 } = usersSlice.actions
 
 export default usersSlice.reducer

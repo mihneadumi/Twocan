@@ -29,6 +29,10 @@ const StyledSideBar = styled.div`
   .button:hover {
     filter: brightness(70%);
   }
+
+  .logout {
+    background-color: #ff5151;
+  }
 `
 
 export default StyledSideBar

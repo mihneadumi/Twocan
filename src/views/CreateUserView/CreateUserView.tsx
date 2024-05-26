@@ -31,7 +31,7 @@ const CreateUserView = () => {
   }
 
   const handleBackClick = () => {
-    navigate('/')
+    navigate('/posts')
   }
 
   const handleCreateClick = () => {
@@ -46,11 +46,21 @@ const CreateUserView = () => {
       Bio: bio
     }
 
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('sessionToken')}`
+      }
+    }
+
     axios
-      .post('https://localhost:7111/twocan/users/add', newUser)
+      .post(
+        'https://twocanapiserver.azurewebsites.net/twocan/users/add',
+        newUser,
+        config
+      )
       .then(() => {
         alert('User created successfully')
-        navigate('/')
+        navigate('/posts')
       })
       .catch((err) => {
         alert('Error creating user')

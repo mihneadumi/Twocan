@@ -17,13 +17,15 @@ import { useEffect } from 'react'
 import AdminView from './views/AdminView/AdminView'
 import UserProfileView from './views/UserProfileView/UserProfileView'
 import CreateUserView from './views/CreateUserView/CreateUserView'
+import Login from './views/Login/Login'
+import Register from './views/RegisterView/Register'
 
 function App() {
   const dispatch = useDispatch()
 
   useEffect(() => {
     const eventSource = new EventSource(
-      'https://localhost:7111/twocan/postStream'
+      'https://twocanapiserver.azurewebsites.net/twocan/postStream'
     )
     eventSource.onmessage = () => {
       try {
@@ -60,7 +62,8 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path='/' element={<Home />} errorElement={<ErrorPage />} />
+        <Route path='/' element={<Login />} errorElement={<ErrorPage />} />
+        <Route path='/register' element={<Register />} />
         <Route path='/posts' element={<Home />} />
         <Route path='/stats' element={<StatsView />} />
         <Route path='/admin' element={<AdminView />} />

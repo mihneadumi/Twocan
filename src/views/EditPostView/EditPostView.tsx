@@ -31,7 +31,7 @@ const EditPostView = () => {
   }
 
   const handleBackClick = () => {
-    navigate('/')
+    navigate('/posts')
   }
 
   const handleUpdateClick = () => {
@@ -45,10 +45,20 @@ const EditPostView = () => {
       content: content ? content : ''
     }
 
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('sessionToken')}`
+      }
+    }
+
     axios
-      .put(`https://localhost:7111/twocan/posts/update`, updatedPost)
+      .put(
+        `https://twocanapiserver.azurewebsites.net/twocan/posts/update`,
+        updatedPost,
+        config
+      )
       .then(() => {
-        navigate('/')
+        navigate('/posts')
       })
       .catch((error) => {
         console.error('There was an error in the post PUT request!', error)

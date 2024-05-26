@@ -6,7 +6,7 @@ import StyledFooterActions from './styled/StyledFooterActions'
 import axios from 'axios'
 import { MenuItem, Select, SelectChangeEvent } from '@mui/material'
 import { useSelector } from 'react-redux'
-import { getUsers } from '../../redux/selectors'
+import { getIsAdmin, getUsers } from '../../redux/selectors'
 
 const CreatePostView = () => {
   const [title, setTitle] = useState('')
@@ -27,7 +27,7 @@ const CreatePostView = () => {
   }
 
   const handleBackClick = () => {
-    navigate('/')
+    navigate('/posts')
   }
 
   const handleCreateClick = () => {
@@ -42,17 +42,24 @@ const CreatePostView = () => {
       AuthorId: selectedUser
     }
 
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('sessionToken')}`
+      }
+    }
+
     axios
-      .post('https://localhost:7111/twocan/posts/add', newPost)
+      .post(
+        'https://twocanapiserver.azurewebsites.net/twocan/posts/add',
+        newPost,
+        config
+      )
       .then(() => {
-        navigate('/')
+        navigate('/posts')
       })
       .catch((err) => {
         console.error(err)
       })
-  }
-  const handleNewUser = () => {
-    navigate('/users/create')
   }
   const [selectedUser, setSelectedUser] = useState(0)
   const users = useSelector(getUsers)
@@ -61,28 +68,29 @@ const CreatePostView = () => {
     setSelectedUser(parseInt(event.target.value))
   }
 
+  const isAdmin = useSelector(getIsAdmin)
+
   return (
     <StyledCreatePostView>
       <Header title='New Post' />
-      <div id='userSelect'>
-        <Select
-          labelId='selectLabel'
-          size='small'
-          id='field'
-          value={selectedUser.toString()}
-          label='Nr of posts per page'
-          onChange={handleUserSelectChange}
-        >
-          {users.map((user) => (
-            <MenuItem key={user.id} value={user.id}>
-              {user.username}
-            </MenuItem>
-          ))}
-        </Select>
-        <button id='createUser' onClick={handleNewUser}>
-          +
-        </button>
-      </div>
+      {isAdmin && (
+        <div id='userSelect'>
+          <Select
+            labelId='selectLabel'
+            size='small'
+            id='field'
+            value={selectedUser.toString()}
+            label='Nr of posts per page'
+            onChange={handleUserSelectChange}
+          >
+            {users.map((user) => (
+              <MenuItem key={user.id} value={user.id}>
+                {user.username}
+              </MenuItem>
+            ))}
+          </Select>
+        </div>
+      )}
       <input
         className='field'
         maxLength={100}

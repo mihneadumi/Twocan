@@ -17,7 +17,7 @@ const StatsView = () => {
   })
 
   const handleBack = () => {
-    navigate('/')
+    navigate('/posts')
   }
 
   const isLoading = useSelector(getPostsLoading)

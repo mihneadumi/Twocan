@@ -14,9 +14,15 @@ import {
 
 // Generator function
 function* getPostsSaga() {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('sessionToken')}`
+    }
+  }
   try {
     const response: AxiosResponse<Post[]> = yield axios.get(
-      'https://localhost:7111/twocan/posts'
+      'https://twocanapiserver.azurewebsites.net/twocan/posts',
+      config
     )
     yield put(getPostsSuccessAction(response.data))
   } catch (error: unknown) {
@@ -30,8 +36,14 @@ export default function* watchGetPosts() {
 
 function* getUsersSaga() {
   try {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('sessionToken')}`
+      }
+    }
     const response: AxiosResponse<User[]> = yield axios.get(
-      'https://localhost:7111/twocan/users'
+      'https://twocanapiserver.azurewebsites.net/twocan/users',
+      config
     )
     yield put(getUsersSuccessAction(response.data))
   } catch (error: unknown) {

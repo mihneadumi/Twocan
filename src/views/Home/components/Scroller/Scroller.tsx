@@ -4,7 +4,11 @@ import Post from '../../../../interfaces/Post'
 import { useState } from 'react'
 import Pagination from '../Pagination/Pagination'
 import { useSelector } from 'react-redux'
-import { getPostsLoading, getPostsPerPage } from '../../../../redux/selectors'
+import {
+  getCurrentUserId,
+  getPostsLoading,
+  getPostsPerPage
+} from '../../../../redux/selectors'
 import CircularProgress from '@mui/material/CircularProgress'
 
 interface ScrollerProps {
@@ -23,11 +27,15 @@ const Scroller = ({ posts, hasPagination }: ScrollerProps) => {
     )
   }
   const isLoading = useSelector(getPostsLoading)
-
+  const currentUser = useSelector(getCurrentUserId)
   return (
     <StyledScroller>
       {sortedPosts.map((post) => (
-        <PostItem key={post.id.toString() + post.authorId} post={post} />
+        <PostItem
+          key={post.id.toString() + post.authorId}
+          post={post}
+          hasActions={currentUser === post.authorId || currentUser === 0}
+        />
       ))}
       {isLoading ? (
         <CircularProgress color='inherit' sx={{ marginLeft: 7 }} />

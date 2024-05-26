@@ -2,6 +2,8 @@ import axios from 'axios'
 import User from '../../../../interfaces/User'
 import StyledHeaderInfo from './styled/StyledHeaderInfo'
 import { useNavigate } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { getCurrentUserId } from '../../../../redux/selectors'
 
 interface HeaderInfoProps {
   user: User
@@ -10,9 +12,19 @@ interface HeaderInfoProps {
 const HeaderInfo = ({ user }: HeaderInfoProps) => {
   const navigate = useNavigate()
 
+  const currentUser = useSelector(getCurrentUserId)
+
   const handleUserDelete = () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('sessionToken')}`
+      }
+    }
     axios
-      .delete(`https://localhost:7111/twocan/users/delete/${user.id}`)
+      .delete(
+        `https://twocanapiserver.azurewebsites.net/twocan/users/delete/${user.id}`,
+        config
+      )
       .then(() => {
         alert('User deleted successfully')
         navigate('/')
@@ -34,9 +46,11 @@ const HeaderInfo = ({ user }: HeaderInfoProps) => {
           {user.following} following
         </h2>
       </div>
-      <button id='deleteUser' onClick={handleUserDelete}>
-        Delete User
-      </button>
+      {(currentUser === user.id || currentUser === 0) && (
+        <button id='deleteUser' onClick={handleUserDelete}>
+          Delete User
+        </button>
+      )}
     </StyledHeaderInfo>
   )
 }

@@ -16,8 +16,16 @@ const ConfirmDeleteModal = () => {
   }
 
   const onDelete = () => {
+    const config = {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('sessionToken')}`
+      }
+    }
     axios
-      .delete(`https://localhost:7111/twocan/posts/delete/${id}`)
+      .delete(
+        `https://twocanapiserver.azurewebsites.net/twocan/posts/delete/${id}`,
+        config
+      )
       .then(() => {
         navigate('/posts')
       })
